@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # Uncomment the database that you have configured in config/database.yml
 # ----------------------------------------------------------------------
 # gem 'mysql2'
-# gem 'sqlite3'
-gem 'pg'
+ gem 'sqlite3'
+#gem 'pg'
 
 # Removes a gem dependency
 def remove(name)
@@ -79,3 +79,11 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem 'execjs'
 gem 'therubyracer', platform: :ruby unless ENV["CI"]
+
+gem "reform", path: '../reform-dryv-example/vendor/reform'
+gem 'reform-rails'
+gem "dry-validation", github: 'dry-rb/dry-validation'
+gem "trailblazer"
+gem "trailblazer-rails"
+gem 'simple_form'
+gem 'haml'
