@@ -9,7 +9,8 @@ class EntitiesController < ApplicationController
   before_action :set_view, only: [:index, :show, :redraw]
 
   before_action :set_options, only: :index
-  before_action :load_ransack_search, only: :index
+  #NO RANSACK SUPPORT - TBD
+  #before_action :load_ransack_search, only: :index
 
   load_and_authorize_resource
 
@@ -128,7 +129,7 @@ class EntitiesController < ApplicationController
 
   def ransack_search
     @ransack_search ||= load_ransack_search
-    @ransack_search.build_sort if @ransack_search.sorts.empty?
+    #@ransack_search.build_sort if @ransack_search.sorts.empty?
     @ransack_search
   end
 
@@ -142,7 +143,8 @@ class EntitiesController < ApplicationController
     advanced_search = params[:q].present?
     wants = request.format
 
-    scope = entities.merge(ransack_search.result(distinct: true))
+    #scope = entities.merge(ransack_search.result(distinct: true))
+    scope = entities
 
     # Get filter from session, unless running an advanced search
     unless advanced_search
@@ -210,5 +212,11 @@ class EntitiesController < ApplicationController
       action = (params['action'] == 'show') ? 'show' : 'index' # create update redraw filter index actions all use index view
       current_user.pref[:"#{controller}_#{action}_view"] = params['view']
     end
+  end
+
+  def load_ransack_search
+    klass = controller_name.classify.constantize
+    @ransack_search = klass.search(params[:q])
+    @ransack_search.build_grouping unless @ransack_search.groupings.any?
   end
 end

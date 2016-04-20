@@ -75,8 +75,8 @@ class Opportunity < ActiveRecord::Base
   exportable
   sortable by: ["name ASC", "amount DESC", "amount*probability DESC", "probability DESC", "closes_on ASC", "created_at DESC", "updated_at DESC"], default: "created_at DESC"
 
-  has_ransackable_associations %w(account contacts tags campaign activities emails comments)
-  ransack_can_autocomplete
+  #has_ransackable_associations %w(account contacts tags campaign activities emails comments)
+  #ransack_can_autocomplete
 
   validates_presence_of :name, message: :missing_opportunity_name
   validates_numericality_of [:probability, :amount, :discount], allow_nil: true

@@ -1,0 +1,101 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 5.0.0.beta3'
+gem 'sqlite3'
+
+# Removes a gem dependency
+def remove(name)
+  @dependencies.reject! { |d| d.name == name }
+end
+
+# Replaces an existing gem dependency (e.g. from gemspec) with an alternate source.
+def gem(name, *args)
+  remove(name)
+  super
+end
+
+gem 'responders', github: 'plataformatec/responders'
+gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'sprocket-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'paperclip'
+gem 'cocaine'
+gem 'paper_trail'
+gem 'authlogic'
+gem 'acts_as_commentable'
+gem 'acts-as-taggable-on'
+gem 'dynamic_form'
+gem 'haml'
+gem 'sass'
+gem 'acts_as_list'
+gem 'ffaker'
+gem 'cancancan'
+gem 'font-awesome-rails'
+gem 'premailer'
+gem 'nokogiri'
+gem 'responds_to_parent'
+gem 'rails3-jquery-autocomplete'
+gem 'psych'
+gem 'thor'
+gem 'rails_autolink'
+gem 'coffee-script-source'
+gem 'country_select'
+gem 'ransack_ui'
+gem 'ransack'
+gem 'email_reply_parser_ffcrm'
+
+gem 'premailer', require: false
+
+group :development do
+  # don't load these gems in travis
+  unless ENV["CI"]
+    gem 'thin'
+    gem 'quiet_assets'
+    gem 'capistrano'
+    gem 'capistrano-bundler'
+    gem 'capistrano-rails'
+    gem 'capistrano-rvm'
+    gem 'guard'
+    gem 'guard-rspec'
+    gem 'guard-rails'
+    gem 'rb-inotify', require: false
+    gem 'rb-fsevent', require: false
+    gem 'rb-fchange', require: false
+  end
+end
+
+group :development, :test do
+  gem 'rspec-rails', github: 'rspec/rspec-rails'
+  gem 'rspec-mocks', github: 'rspec/rspec-mocks'
+  gem "rspec-core", github: "rspec/rspec-core", branch: "master"
+  gem "rspec-support", github: "rspec/rspec-support", branch: "master"
+  gem "rspec-expectations", github: "rspec/rspec-expectations", branch: "master"
+  gem 'headless'
+  gem 'byebug'
+  gem 'pry-rails' unless ENV["CI"]
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem "acts_as_fu"
+  gem 'zeus' unless ENV["CI"]
+  gem 'timecop'
+end
+
+group :heroku do
+  gem 'unicorn', platform: :ruby
+  gem 'rails_12factor'
+end
+
+gem 'sass-rails', '~> 5.0'
+gem 'coffee-rails', '~> 4.1.0'
+
+gem 'uglifier'
+gem 'execjs'
+gem 'therubyracer', platform: :ruby unless ENV["CI"]
+
+ruby "2.2.2"

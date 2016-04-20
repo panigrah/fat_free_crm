@@ -52,8 +52,8 @@ class Contact < ActiveRecord::Base
 
   delegate :campaign, to: :lead, allow_nil: true
 
-  has_ransackable_associations %w(account opportunities tags activities emails addresses comments tasks)
-  ransack_can_autocomplete
+  #has_ransackable_associations %w(account opportunities tags activities emails addresses comments tasks)
+  #ransack_can_autocomplete
 
   serialize :subscribed_users, Set
 

@@ -5,39 +5,32 @@
 #------------------------------------------------------------------------------
 require File.expand_path('../boot', __FILE__)
 
-require 'rubygems'
+require 'rails/all'
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
-
-# require "rails/test_unit/railtie"
-#
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 # Override Rails Engines so that plugins have higher priority than the Application
-require 'fat_free_crm/gem_ext/rails/engine'
+#require 'fat_free_crm/gem_ext/rails/engine'
 
 module FatFreeCRM
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    
     # Models are organized in sub-directories
     config.autoload_paths += Dir[Rails.root.join("app/models/**")] +
                              Dir[Rails.root.join("app/controllers/entities")]
+    config.eager_load_paths += %W( #{config.root}/lib )
 
     # Prevent Field class from being reloaded more than once as this clears registered customfields
     config.autoload_once_paths += [File.expand_path("../app/models/fields/field.rb", __FILE__)]
 
     # Activate observers that should always be running.
     unless ARGV.join.include?('assets:precompile')
-      config.active_record.observers = :lead_observer, :opportunity_observer, :task_observer, :entity_observer
+      #config.active_record.observers = :lead_observer, :opportunity_observer, :task_observer, :entity_observer
     end
 
     # Load development rake tasks (RSpec, Gem packaging, etc.)
@@ -69,6 +62,7 @@ module FatFreeCRM
     config.filter_parameters += [:password, :password_hash, :password_salt, :password_confirmation]
 
     config.active_record.raise_in_transactional_callbacks = true
+    #config.action_controller.permit_all_parameters = true
   end
 end
 

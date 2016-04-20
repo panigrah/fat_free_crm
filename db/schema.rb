@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "subject_id"
     t.string   "subject_type"
+    t.integer  "subject_id"
     t.string   "action",       limit: 32, default: "created"
     t.string   "info",                    default: ""
     t.boolean  "private",                 default: false
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
     t.string   "country",          limit: 64
     t.string   "full_address"
     t.string   "address_type",     limit: 16
-    t.integer  "addressable_id"
     t.string   "addressable_type"
+    t.integer  "addressable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
 
   create_table "avatars", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "entity_id"
     t.string   "entity_type"
+    t.integer  "entity_id"
     t.integer  "image_file_size"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "commentable_id"
     t.boolean  "private"
     t.string   "title",                       default: ""
     t.text     "comment"
@@ -181,8 +181,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
   create_table "emails", force: :cascade do |t|
     t.string   "imap_message_id",                                 null: false
     t.integer  "user_id"
-    t.integer  "mediator_id"
     t.string   "mediator_type"
+    t.integer  "mediator_id"
     t.string   "sent_from",                                       null: false
     t.string   "sent_to",                                         null: false
     t.string   "cc"
@@ -315,8 +315,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
 
   create_table "permissions", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "asset_id"
     t.string   "asset_type"
+    t.integer  "asset_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
@@ -380,8 +380,8 @@ ActiveRecord::Schema.define(version: 20150427131956) do
     t.integer  "assigned_to"
     t.integer  "completed_by"
     t.string   "name",                        default: "", null: false
-    t.integer  "asset_id"
     t.string   "asset_type"
+    t.integer  "asset_id"
     t.string   "priority",         limit: 32
     t.string   "category",         limit: 32
     t.string   "bucket",           limit: 32

@@ -56,8 +56,8 @@ class Campaign < ActiveRecord::Base
   exportable
   sortable by: ["name ASC", "target_leads DESC", "target_revenue DESC", "leads_count DESC", "revenue DESC", "starts_on DESC", "ends_on DESC", "created_at DESC", "updated_at DESC"], default: "created_at DESC"
 
-  has_ransackable_associations %w(leads opportunities tags activities emails comments tasks)
-  ransack_can_autocomplete
+  #has_ransackable_associations %w(leads opportunities tags activities emails comments tasks)
+  #ransack_can_autocomplete
 
   validates_presence_of :name, message: :missing_campaign_name
   validates_uniqueness_of :name, scope: [:user_id, :deleted_at]

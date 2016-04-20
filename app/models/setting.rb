@@ -23,7 +23,7 @@
 # Any configured settings in `config/settings.yml` will override those in
 # `config/settings.default.yml`, and settings in the database table have the highest priority.
 
-class Setting < ActiveRecord::Base
+class Setting < ApplicationRecord
   serialize :value
 
   # Use class variables for cache and yaml settings.
