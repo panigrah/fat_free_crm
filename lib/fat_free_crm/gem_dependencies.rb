@@ -32,6 +32,8 @@ require 'nokogiri'
 require 'font-awesome-rails'
 require 'thor'
 require 'rails_autolink'
+require 'trailblazer'
+require 'reform'
 
 # Load redcloth if available (for textile markup in emails)
 begin
