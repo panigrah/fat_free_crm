@@ -1,0 +1,5 @@
+en:
+  errors:
+    unique?:
+      arg:
+        default: "Value must be unique"

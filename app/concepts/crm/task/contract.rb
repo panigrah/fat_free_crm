@@ -1,8 +1,6 @@
-
 module CRM
-  module Entity
     module Task::Contract
-    class Create < CRM::Entity::Form
+    class Create < CRM::EntityForm
       model :task
 
       property :id
@@ -26,6 +24,5 @@ module CRM
         key(:name) { filled? }
       end
     end
-  end
   end
 end
