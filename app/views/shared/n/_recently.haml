@@ -1,0 +1,10 @@
+- @versions = Version.recent_for_user(current_user)
+.sidebar-control-panel
+  %h3.control-sidebar-heading #{t :recent_items}
+  %ul.control-sidebar-menu
+    - if @versions.present?
+      = render :partial => "shared/n/recent", :collection => @versions
+    - else
+      %li
+        %a
+          %div #{t :no_recent_items}

@@ -1,0 +1,6 @@
+- title = (recent.item.respond_to?(:full_name) ? recent.item.full_name : recent.item.name)
+%li{ :class => recent != @versions.last ? "" : "last" }
+  %a{:href => polymorphic_url(recent.item)}
+    %i.fa{:class => "fa-#{recent.item_type.downcase}"}
+    = truncate(title, :length => 19)
+ 

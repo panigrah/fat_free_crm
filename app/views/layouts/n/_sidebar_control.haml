@@ -1,0 +1,45 @@
+%aside.control-sidebar.control-sidebar-dark
+  / Create the tabs
+  %ul.nav.nav-tabs.nav-justified.control-sidebar-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#control-sidebar-home-tab"}
+        %i.fa.fa-home
+    %li
+      %a{"data-toggle" => "tab", :href => "#control-sidebar-settings-tab"}
+        %i.fa.fa-gears
+  / Tab panes
+  .tab-content
+    #control-sidebar-home-tab.tab-pane.active
+      - view   ||= controller.controller_name
+      - action ||= controller.action_name
+      - sidebar = "#{view}/sidebar_#{action}"
+      - sidebar = "admin/#{sidebar}" if controller.class.to_s.starts_with?("Admin::")
+
+      = content_for :sidebar
+
+      - begin
+        %h3.control-sidebar-heading Filter
+        = render sidebar
+        - rescue MissingTemplate
+
+      = render "lists/n/lists"
+      = render "shared/n/recently"
+
+    / /.tab-pane
+    / Settings tab content
+    #control-sidebar-settings-tab.tab-pane
+      %form{:method => "post"}
+        %h3.control-sidebar-heading General Settings
+        .form-group
+          %label.control-sidebar-subheading
+            Report panel usage
+            %input.pull-right{:checked => "checked", :type => "checkbox"}
+          %p
+            Some information about this general settings option
+        / /.form-group
+    / /.tab-pane
+/ /.control-sidebar
+/
+  Add the sidebar's background. This div must be placed
+  immediately after the control sidebar
+.control-sidebar-bg

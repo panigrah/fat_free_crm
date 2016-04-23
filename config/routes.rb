@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   namespace :crm do
-    resources :accounts
+    resources :accounts do
+      collection do
+        post :filter
+      end
+    end
   end
 
   get 'activities' => 'home#index'
