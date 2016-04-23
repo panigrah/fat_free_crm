@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  namespace :crm do
+    resources :accounts
+  end
+
   get 'activities' => 'home#index'
   get 'admin'      => 'admin/users#index',       :as => :admin
   get 'login'      => 'authentications#new',     :as => :login

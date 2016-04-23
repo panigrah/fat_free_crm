@@ -21,7 +21,7 @@ module CRM
       property :background_info
 
       validation :default do
-        key(:name) { filled? }
+        required(:name) { filled? }
       end
     end
   end

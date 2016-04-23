@@ -1,0 +1,19 @@
+%ul.sidebar-menu
+  %li.header MAIN MENU
+  / Optionally, you can add icons to the links
+  - tabs.each do |tab|
+    %li{:class => tab[:active]? "active": nil}
+      %a{:href => tab[:url]}
+        %i.fa{class: tab[:icon]}
+          = t(tab[:text])
+
+  %li.treeview
+    %a{:href => "#"}
+      %i.fa.fa-link
+      %span Multilevel
+      %i.fa.fa-angle-left.pull-right
+    %ul.treeview-menu
+      %li
+        %a{:href => "#"} Link in level 2
+      %li
+        %a{:href => "#"} Link in level 2

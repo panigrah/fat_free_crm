@@ -6,8 +6,6 @@ module CRM
 	    contract Contract::Create
 
 	    def process(params)
-	    	puts params[:account].inspect
-
 	    	validate(params[:account]) do |f|
 	    		f.save
 	    	end
@@ -16,6 +14,14 @@ module CRM
 
 	  class Update < Create
 	  	action :update
+	  end
+
+	  class Index < Trailblazer::Operation
+	  	include Collection
+
+		def model!(params)
+		    ::Account.all
+		 end
 	  end
 	end
 end

@@ -1,0 +1,10 @@
+- if current_user.present?
+  .user-panel
+    .pull-left.image
+      = avatar_for(@current_user, size: :medium, width: '30', height: '30')
+    .pull-left.info
+      %p= current_user.name
+      / Status
+      %a{:href => "#"}
+        %i.fa.fa-circle.text-success
+        Online

@@ -3,13 +3,24 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-    %title AdminLTE 2 | Starter
+    -#TODO: Title should be customizable - Settings.title
+    %title Fat Free CRM
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
-    %link{:href => "bootstrap/css/bootstrap.min.css", :rel => "stylesheet"}
-    %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}
+    = stylesheet_link_tag :application_n
+    = stylesheet_link_tag :print, :media => 'print'
+    = hook(:stylesheet_includes, self) do
+      #{yield :stylesheet_includes}
+    %style= yield :styles
+
+    = javascript_include_tag :application_n
+    = csrf_meta_tag
+    = hook(:javascript_includes, self)
+
+    -#TODO: icon should be configurable - Settings.ico
+    %link{:rel=>"shortcut icon", :href=>"/favicon.ico", :type=>"image/x-icon"}
+    %link{:rel=>"icon", :href=>"/favicon.ico", :type=>"image/x-icon"}
+
     %link{:href => "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css", :rel => "stylesheet"}
-    %link{:href => "dist/css/AdminLTE.min.css", :rel => "stylesheet"}
-    %link{:href => "dist/css/skins/skin-blue.min.css", :rel => "stylesheet"}
 
     /HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     / WARNING: Respond.js doesn't work if you view the page via file://
@@ -40,7 +51,7 @@
               %li.dropdown.messages-menu
 
                 / Menu toggle button
-                %a.dropdown-toggle{:href => '#', :data => {:toggle => dropdown}}
+                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}}
                   %i.fa.fa-envelope-o
                   %span.label.label-success
                     4
@@ -52,15 +63,7 @@
         / sidebar: style can be found in sidebar.less
         %section.sidebar
           / Sidebar user panel (optional)
-          .user-panel
-            .pull-left.image
-              %img.img-circle{:alt => "User Image", :src => "dist/img/user2-160x160.jpg"}/
-            .pull-left.info
-              %p Alexander Pierce
-              / Status
-              %a{:href => "#"}
-                %i.fa.fa-circle.text-success
-                Online
+          = render "layouts/user_panel"
           / search form (Optional)
           %form.sidebar-form{:action => "#", :method => "get"}
             .input-group
@@ -70,28 +73,7 @@
                   %i.fa.fa-search
           / /.search form
           / Sidebar Menu
-          %ul.sidebar-menu
-            %li.header HEADER
-            / Optionally, you can add icons to the links
-            %li.active
-              %a{:href => "#"}
-                %i.fa.fa-link
-                %span Link
-            %li
-              %a{:href => "#"}
-                %i.fa.fa-link
-                %span Another Link
-            %li.treeview
-              %a{:href => "#"}
-                %i.fa.fa-link
-                %span Multilevel
-                %i.fa.fa-angle-left.pull-right
-              %ul.treeview-menu
-                %li
-                  %a{:href => "#"} Link in level 2
-                %li
-                  %a{:href => "#"} Link in level 2
-          / /.sidebar-menu
+          = render 'layouts/n/sidebar'
         / /.sidebar
       / Content Wrapper. Contains page content
       .content-wrapper
@@ -108,6 +90,7 @@
             %li.active Here
         / Main content
         %section.content
+          = yield
           / Your Page Content Here
         / /.content
       / /.content-wrapper
@@ -176,14 +159,6 @@
         Add the sidebar's background. This div must be placed
         immediately after the control sidebar
       .control-sidebar-bg
-      / ./wrapper
-      / REQUIRED JS SCRIPTS
-      / jQuery 2.1.4
-      %script{:src => "plugins/jQuery/jQuery-2.1.4.min.js"}
-      / Bootstrap 3.3.5
-      %script{:src => "bootstrap/js/bootstrap.min.js"}
-      / AdminLTE App
-      %script{:src => "dist/js/app.min.js"}
       /
         Optionally, you can add Slimscroll and FastClick plugins.
         Both of these plugins are recommended to enhance the
