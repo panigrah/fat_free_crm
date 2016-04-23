@@ -80,9 +80,9 @@ gem 'uglifier'
 gem 'execjs'
 gem 'therubyracer', platform: :ruby unless ENV["CI"]
 
-gem "reform", path: './vendor/reform'
+gem "reform", github: 'apotonick/reform', branch: '2-2'
 gem 'reform-rails'
-gem "dry-validation", path: './vendor/dry-validation'
+gem "dry-validation", github: 'dry-rb/dry-validation'
 gem "trailblazer"
 gem "trailblazer-rails"
 gem "cells"

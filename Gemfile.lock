@@ -1,5 +1,16 @@
-PATH
-  remote: ./vendor/dry-validation
+GIT
+  remote: git://github.com/apotonick/reform.git
+  revision: cd7c3b30139ff9f5e27d85085656f30d6973664f
+  branch: 2-2
+  specs:
+    reform (2.2.0)
+      disposable (>= 0.3.0, < 0.4.0)
+      representable (>= 2.4.0, < 3.1.0)
+      uber (~> 0.0.11)
+
+GIT
+  remote: git://github.com/dry-rb/dry-validation.git
+  revision: 2f2ab25b871dde41d4c0f2b259f0c09989f4176b
   specs:
     dry-validation (0.7.4)
       concurrent-ruby (~> 1.0)
@@ -8,14 +19,6 @@ PATH
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.2, >= 0.2.2)
       dry-types (~> 0.7, >= 0.7.1)
-
-PATH
-  remote: ./vendor/reform
-  specs:
-    reform (2.2.0)
-      disposable (>= 0.3.0, < 0.4.0)
-      representable (>= 2.4.0, < 3.1.0)
-      uber (~> 0.0.11)
 
 PATH
   remote: ./vendor/table_cloth
