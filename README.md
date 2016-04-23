@@ -1,5 +1,22 @@
 Fat Free CRM with a bootstrap AdminLTE theme and a new backend on Trailblazer
-
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://raw.githubusercontent.com/panigrah/fat_free_crm/panigrah/screenshot-accounts.png" target="_blank" title="List Accounts">
+       <img src="https://raw.githubusercontent.com/panigrah/fat_free_crm/panigrah/screenshot-accounts.png">
+      </a>
+      <br />
+      <em>Accounts</em>
+    </td>
+    <td align="center">
+      <a href="https://raw.githubusercontent.com/panigrah/fat_free_crm/panigrah/screenshot-login.png" target="_blank" title="Login">
+        <img src="https://raw.githubusercontent.com/panigrah/fat_free_crm/panigrah/screenshot-login.png" alt="Login">
+      </a>
+      <br />
+      <em>Login</em>
+    </td>
+  </tr>
+</table>
 
 ## License
 
