@@ -1,6 +1,6 @@
 module CRM
 	class ApplicationController < ::ApplicationController
-		layout "application_n"
+		layout "n/application"
 
 		
 	end

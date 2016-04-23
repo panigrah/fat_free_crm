@@ -6,6 +6,7 @@
 class PasswordsController < ApplicationController
   before_action :load_user_using_perishable_token, only: [:edit, :update]
   before_action :require_no_user
+  layout "n/application-blank"
 
   #----------------------------------------------------------------------------
   def new

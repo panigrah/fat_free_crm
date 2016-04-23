@@ -1,19 +1,30 @@
-.standalone#standalone
-  -# The following form gets submitted to #create when @authentication is nil,
+-# The following form gets submitted to #create when @authentication is nil,
   -# or to #update when @authentication is not nil (ex. suspended).
-  = form_for @authentication, :url => authentication_path, :html => one_submit_only do |f|
-    - if can_signup?
-      .title_tools #{t :no_account} #{link_to t(:sign_up_now), signup_path}
-    .title= t(:login)
-    .section
-      .label= t(:username) + ':'
-      = f.text_field :username
-      .label= t(:password) + ':'
-      = f.password_field :password
+.container
+  .login-box
+    .login-logo
+      %b Fat Free
+      CRM
+    .login-box-body
+      %p.login-box-msg
+        .title= t(:login)
+      = form_for @authentication, :url => authentication_path, :html => one_submit_only do |f|
+        - if can_signup?
+          .title_tools #{t :no_account} #{link_to t(:sign_up_now), signup_path}
+        .form-group.has-feedback
+          = f.text_field :username, :class => "form-control", :placeholder => "username"
+          %span.glyphicon.glyphicon-envelope.form-control-feedback
+        .form-group.has-feedback
+          = f.password_field :password, :class => "form-control", :placeholder => "username"
+          %span.glyphicon.glyphicon-lock.form-control-feedback
+        .row
+          .col-xs-8
+            .checkbox
+              %label
+                = f.check_box(:remember_me)
+                =t(:remember_me)
 
-    %div(style="margin-left:12px") #{f.check_box(:remember_me)} #{t :remember_me}
-    %br
-    .buttonbar
-      = f.submit t(:login)
-      #{t :or}
+          .col-xs-4
+            = f.submit t(:login), :class => 'btn btn-primary btn-block btn-flat'
+          
       = link_to t(:forgot_password) << '?', new_password_path
