@@ -89,4 +89,5 @@ gem "cells"
 gem "kaminari-cells"
 gem 'cells-haml'
 gem 'simple_form'
+gem 'table_cloth', path: './vendor/table_cloth'
 gem 'haml'

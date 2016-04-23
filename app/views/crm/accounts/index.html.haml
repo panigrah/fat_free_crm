@@ -1,17 +1,5 @@
 -# = concept('CRM/account/cell', collection:  @collection)
 -#how do we move this to cells?
+
 .box-body.table-responsive.no-padding
-	%table.table.table-hover
-		%tr
-			%th ID
-			%th Name
-			%th Date
-			%th Owner
-			%th Other
-		- @collection.each do |account|
-			%tr
-				%td= account.id
-				%td= account.name
-				%td= account.created_at
-				%td= account.user.name if account.user
-				%td= account.background_info
+  = simple_table_for @collection, with: AccountTable
