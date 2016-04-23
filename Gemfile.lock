@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/dry-rb/dry-validation.git
-  revision: 2f2ab25b871dde41d4c0f2b259f0c09989f4176b
+PATH
+  remote: ./vendor/dry-validation
   specs:
     dry-validation (0.7.4)
       concurrent-ruby (~> 1.0)
@@ -11,10 +10,10 @@ GIT
       dry-types (~> 0.7, >= 0.7.1)
 
 PATH
-  remote: ../reform-dryv-example/vendor/reform
+  remote: ./vendor/reform
   specs:
     reform (2.2.0)
-      disposable (>= 0.2.6, < 0.3.0)
+      disposable (>= 0.3.0, < 0.4.0)
       representable (>= 2.4.0, < 3.1.0)
       uber (~> 0.0.11)
 
@@ -136,7 +135,7 @@ GEM
     declarative (0.0.7)
       uber (>= 0.0.15)
     diff-lcs (1.2.5)
-    disposable (0.2.6)
+    disposable (0.3.0)
       declarative (~> 0.0.6)
       representable (>= 2.4.0, <= 3.1.0)
       uber

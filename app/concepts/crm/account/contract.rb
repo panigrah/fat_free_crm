@@ -32,13 +32,13 @@ module CRM
       end
 
       validation :default do
-        required(:name).filled # { filled? }    
-        optional(:rating).maybe(inclusion?: [0..5])
-        optional(:category).maybe(inclusion?: Setting.unroll(:account_category).map { |s| s.last.to_s })	
+        required(:name) { filled? & unique? }   
+        optional(:rating).maybe(inclusion?: (0..5))
+        #optional(:category).maybe(inclusion?: Setting.unroll(:account_category).map { |s| s.last.to_s })	
 
         configure do
           def unique?(name)
-            Account.where(:name => name).first.blank?
+            ::Account.where(:name => name).first.blank?
           end
         
     		  #def users_for_shared_access
