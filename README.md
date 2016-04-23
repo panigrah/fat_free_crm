@@ -1,5 +1,7 @@
 # Fat Free CRM [![TravisCI][travis-img-url]][travis-ci-url]  [![Code Climate](https://codeclimate.com/github/fatfreecrm/fat_free_crm.png)](https://codeclimate.com/github/fatfreecrm/fat_free_crm)
 
+[![Join the chat at https://gitter.im/panigrah/fat_free_crm](https://badges.gitter.im/panigrah/fat_free_crm.svg)](https://gitter.im/panigrah/fat_free_crm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [travis-img-url]: https://secure.travis-ci.org/fatfreecrm/fat_free_crm.png?branch=master
 [travis-ci-url]: http://travis-ci.org/fatfreecrm/fat_free_crm
 
