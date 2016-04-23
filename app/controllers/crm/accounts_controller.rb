@@ -1,4 +1,4 @@
-module Crm
+module CRM
 	class AccountsController < CRM::ApplicationController
 		# GET /accounts
   		#----------------------------------------------------------------------------

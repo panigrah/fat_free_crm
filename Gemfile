@@ -85,5 +85,8 @@ gem 'reform-rails'
 gem "dry-validation", github: 'dry-rb/dry-validation'
 gem "trailblazer"
 gem "trailblazer-rails"
+gem "cells"
+gem "kaminari-cells"
+gem 'cells-haml'
 gem 'simple_form'
 gem 'haml'
