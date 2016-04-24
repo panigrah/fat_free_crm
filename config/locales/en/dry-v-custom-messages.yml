@@ -77,8 +77,3 @@ en:
     
     unique?: "must be unique"
     
-    name: "must be unique"
-
-  rules:
-    name:
-      unique?: "the name name must be unique"
