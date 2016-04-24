@@ -5,6 +5,7 @@
     %li{:class => tab[:active]? "active": nil}
       %a{:href => tab[:url]}
         %i.fa{class: tab[:icon]}
+        %span
           = t(tab[:text])
 
   %li.treeview

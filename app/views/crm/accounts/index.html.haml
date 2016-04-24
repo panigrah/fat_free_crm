@@ -1,2 +1,13 @@
+#search.search-form
+  .box.box-default
+    .box-header
+      %h3.box-title
+        Filter
+      .box-tools.pull-right
+        %button.btn.btn-box-tool{:data => {:widget => 'collapse'}}
+          %i.fa.fa-minus
+    #advanced_search.box-body
+      = ransack_ui_search :remote => true
+
 .box-body.table-responsive.no-padding
   = simple_table_for @collection, with: AccountTable

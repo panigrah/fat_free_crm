@@ -1,0 +1,12 @@
+-# .fields.well
+.box{:"data-object_name" => f.object_name}
+  .combinator.form-inline.box-header
+    - key = (f.object_name =~ /[0]/) ? :group_first : :group_rest
+    - combinator = f.combinator_select({}, :class => 'ransack_combinator form-control')
+    = t("ransack.#{key}", :combinator => combinator).html_safe
+
+  .filters.box-body
+    - f.object.build_condition unless f.object.conditions.any?
+    = f.condition_fields do |c|
+      = render 'ransack_ui/condition_fields', :f => c, :options => options
+    = link_to_add_fields t('ransack.add_condition'), f, :condition, options

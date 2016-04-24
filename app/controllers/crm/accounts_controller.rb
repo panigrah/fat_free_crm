@@ -1,11 +1,13 @@
 module CRM
 	class AccountsController < CRM::ApplicationController
 		before_action :get_data_for_sidebar, only: :index
+		before_filter :load_search_ui, :only => :index
 
 		# GET /accounts
   		#----------------------------------------------------------------------------
 	  	def index
-	  		collection CRM::Account::Index
+	  		@q = ::Account.ransack(params[:q])
+	  		collection CRM::Account::Search
 	  	end
 
 	  	#TODO: What does this do?
@@ -22,5 +24,12 @@ module CRM
     		@account_category_total[:all] = ::Account.my.count
     		@account_category_total[:other] = @account_category_total[:all] - categorized
  		end
+
+ 		def load_search_ui
+ 			klass ||= controller_path.classify.constantize
+      		@ransack_search = ::Account.search(params[:q])
+      		@ransack_search.build_grouping if @ransack_search.groupings.empty?
+      		@ransack_search
+      	end
 	end
 end

@@ -7,4 +7,10 @@
 //= require jquery
 //= require n/bootstrap.min
 //= require n/lte_app
+//= require jquery-ui
+//= require ransack_ui_jquery
 //= require_self
+
+$(document).ready(function() {
+    $("#advanced_search").ransack_search_form();
+});

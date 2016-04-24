@@ -23,5 +23,13 @@ module CRM
 		    ::Account.all
 		 end
 	  end
+
+	  class Search < Trailblazer::Operation
+	  	include Collection
+	  	def model!(params) 
+	  		q = ::Account.ransack(params[:q])
+	  		results = q.result() #.order(params[:order]).page(params[:page]).include_all #.per(params[:per]).include_all
+	  	end
+	  end
 	end
 end
