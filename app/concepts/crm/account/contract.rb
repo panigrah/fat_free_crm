@@ -23,17 +23,18 @@ module CRM
       property :billing_address, form: Address::Contract::Create, prepopulator: :set_billing_address, populate_if_empty: -> (options) { model.build_billing_address }
       property :shipping_address, form: Address::Contract::Create, prepopulator: :set_shipping_address, populate_if_empty: -> (options) { model.build_shipping_address }
 
-      def set_billing_address
-        self.build_billing_address if self.billing_address.nil?
+      def set_billing_address(options)
+        #self.build_billing_address if self.billing_address.nil?
+        self.billing_address = self.model.build_billing_address if self.billing_address.nil?
       end
 
-      def set_shipping_address
-        self.build_shipping_address if self.billing_address.nil?
+      def set_shipping_address(options)
+        self.model.build_shipping_address if self.billing_address.nil?
       end
 
       validation :default do
         required(:name) { filled? & unique? }   
-        optional(:rating).maybe(inclusion?: [0,1,2,3,4,5])
+        optional(:rating).maybe(inclusion?: %w(0 1 2 3 4 5))
         optional(:category).maybe(inclusion?: Setting.unroll(:account_category).map { |s| s.last.to_s })	
 
         configure do

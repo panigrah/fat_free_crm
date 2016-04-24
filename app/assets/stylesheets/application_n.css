@@ -10,6 +10,7 @@
  *= require n/bootstrap.min
  *= require n/lte_app
  *= require n/skins/skin-blue.min
+ *= require n/hackery-fixme
  *= require font-awesome
  *= require_self
  */

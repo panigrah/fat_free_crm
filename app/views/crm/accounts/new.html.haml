@@ -1,0 +1,23 @@
+= simple_form_for [:crm, @form] do |f|
+  .form-group
+    = f.input :name
+  = f.input :assigned_to
+  = f.input :category
+  = f.input :rating
+
+  = f.input :background_info
+
+  = f.input :toll_free_phone
+  = f.input :phone
+  = f.input :fax
+  = f.input :website
+  = f.input :email
+
+  = f.fields_for :billing_address do |a|
+    = a.input :street1
+    = a.input :street2
+    = a.input :city
+    = a.input :state
+    = a.input :country
+
+  = f.submit :class => 'btn btn-default'

@@ -1,0 +1,47 @@
+.panel.summary#summary
+  %h4= name
+  - if website
+    %div
+      %b= link_to(truncate(website, :length => 30), website, :"data-popup" => true)
+  - if email.present?
+    %div
+      %b= email 
+      -#link_to_email(email, 30)
+
+  %div
+    - if toll_free_phone
+      #{t :phone_toll_free}: <b>#{toll_free_phone}</b><br />
+
+    - if phone
+      #{t :phone}: <b>#{phone}</b><br />
+
+    - if fax
+      #{t :fax}: <b>#{fax}</b><br />
+
+    -#render cell billing and shipping adress here.
+    -#concept('address/cell', billing_address, :type => 'billing', :title => :billing_address)
+
+  .caption #{t :account_summary}
+  %li
+    %dt= pipeline != 0.0 ? number_to_currency(pipeline, :precision => 0) : t(:n_a)
+    %tt #{t :pipeline}:
+  %li
+    %dt= won != 0.0 ? number_to_currency(won, :precision => 0) : t(:n_a)
+    %tt #{t :won}:
+  %li
+    %dt= lost != 0.0 ? number_to_currency(lost, :precision => 0) : t(:n_a)
+    %tt #{t :lost}:
+  %li
+    %dt= category ? t(category) : t(:other)
+    %tt #{t :category}:
+  %li
+    %span{:style => "float:right;"}= rating 
+    -# stars_for(model)
+    %tt #{t :rating}:
+  %li
+    %dt= assigned_to ? truncate(model.assignee.full_name, :length => 16) : nil
+    %tt #{t :assigned_to}:
+
+  - unless background_info.blank?
+    .caption #{t :background_info}
+    = auto_link(simple_format background_info)

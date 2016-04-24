@@ -1,0 +1,19 @@
+// TODO: This is hacked CSS to get rendering to work - needs to be cleaned and correctly designed
+
+.panel.summary {
+	width: 250px;
+	padding: 10px;
+
+	.caption {
+		font-weight: bold;
+		margin-top: 5px;
+		border-bottom: 1px solid gray;
+	}
+
+	li {
+		list-style-type: none;
+		dt {
+			float: right;
+		}
+	}
+}

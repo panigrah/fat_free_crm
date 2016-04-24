@@ -12,14 +12,14 @@
     #control-sidebar-home-tab.tab-pane.active
       - view   ||= controller.controller_name
       - action ||= controller.action_name
-      - sidebar = "#{view}/sidebar_#{action}"
+      - sidebar = "#{view}/sidebar_#{action}" 
       - sidebar = "admin/#{sidebar}" if controller.class.to_s.starts_with?("Admin::")
-
+      
       = content_for :sidebar
 
       - begin
         %h3.control-sidebar-heading Filter
-        = render sidebar
+        = render sidebar unless controller.class.to_s.starts_with?("CRM::")
         - rescue MissingTemplate
 
       = render "lists/n/lists"

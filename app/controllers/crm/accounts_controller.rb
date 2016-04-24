@@ -10,6 +10,35 @@ module CRM
 	  		collection CRM::Account::Search
 	  	end
 
+	  	def new
+	  		form CRM::Account::Create
+	  	end
+
+	  	def create
+	  		run CRM::Account::Create do |op|
+	  			return redirect_to op.model
+	  		end
+
+	  		render action: :new
+	  	end
+
+	  	def edit
+	  		form CRM::Account::Update
+	  		render action: :new
+	  	end
+
+	  	def update
+	  		run CRM::Account::Update do |op|
+	  			return redirect_to op.model
+	  		end
+
+	  		render action: :new
+	  	end
+
+	  	def show
+	  		present CRM::Account::Update
+	  	end
+
 	  	#TODO: What does this do?
 	  	def filter
 	  	end
