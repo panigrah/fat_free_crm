@@ -20,9 +20,8 @@ GIT
       dry-logic (~> 0.2, >= 0.2.2)
       dry-types (~> 0.7, >= 0.7.1)
 
-GIT
-  remote: git://github.com/panigrah/ransack_ui.git
-  revision: e9e9b8f4cc2ffff5edb4a153a9080b31b12c4c28
+PATH
+  remote: ../ransack_ui
   specs:
     ransack_ui (1.3.4)
       haml
@@ -148,6 +147,7 @@ GEM
     declarative (0.0.7)
       uber (>= 0.0.15)
     diff-lcs (1.2.5)
+    diffy (3.1.0)
     disposable (0.3.0)
       declarative (~> 0.0.6)
       representable (>= 2.4.0, <= 3.1.0)
@@ -247,6 +247,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    multi_json (1.11.2)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -341,6 +342,15 @@ GEM
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     responds_to_parent (1.1.0)
+    roar (1.0.3)
+      representable (>= 2.0.1, <= 3.0.0)
+    roar-rails (1.0.1)
+      actionpack
+      railties (>= 3.0.0)
+      responders
+      roar (>= 1.0.0, <= 1.1.0)
+      test_xml (>= 0.1.6)
+      uber (>= 0.0.5)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -401,6 +411,9 @@ GEM
     sshkit (1.10.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    test_xml (0.1.7)
+      diffy (~> 3.0)
+      nokogiri (>= 1.3.2)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -475,6 +488,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari-cells
+  multi_json
   nokogiri
   paper_trail (>= 4.0.0.beta2)
   paperclip
@@ -493,8 +507,10 @@ DEPENDENCIES
   rb-inotify
   reform!
   reform-rails
-  responders (~> 2.0)
+  responders
   responds_to_parent
+  roar
+  roar-rails
   rspec-activemodel-mocks
   rspec-rails
   sass

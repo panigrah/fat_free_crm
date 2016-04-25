@@ -4,6 +4,7 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 module AccountsHelper
+  
   # Sidebar checkbox control for filtering accounts by category.
   #----------------------------------------------------------------------------
   def account_category_checkbox(category, count)

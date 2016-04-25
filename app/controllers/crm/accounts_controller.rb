@@ -2,12 +2,14 @@ module CRM
 	class AccountsController < CRM::ApplicationController
 		before_action :get_data_for_sidebar, only: :index
 		before_filter :load_search_ui, :only => :index
+		respond_to :html, :json
 
 		# GET /accounts
   		#----------------------------------------------------------------------------
 	  	def index
 	  		@q = ::Account.ransack(params[:q])
 	  		collection CRM::Account::Search
+	  		respond_with({:data => @collection})
 	  	end
 
 	  	def new

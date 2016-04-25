@@ -7,7 +7,39 @@
         %button.btn.btn-box-tool{:data => {:widget => 'collapse'}}
           %i.fa.fa-minus
     #advanced_search.box-body
-      = ransack_ui_search :remote => true
+      = ransack_ui_search :remote => true 
 
-.box-body.table-responsive.no-padding
-  = simple_table_for @collection, with: AccountTable
+#search-results.box.box-default
+  .box-body.table-responsive
+    = ransack_ui_datatable(0, :class => 'table table-striped table-bordered') do |t|
+      %thead
+        %tr
+          = t.property :name
+          = t.property :category
+          = t.property :phone
+          = t.property :website
+          = t.property :email
+      %tbody
+
+- #override the ransack submit form to load the table below
+:javascript
+  $(document).ready(function() {
+      $('#search .ransack_search').each( function() {
+        var url = $(this).attr('action') + ".json?" + $(this).serialize();
+        var table = $('#search-results table.table').DataTable( {
+          ajax: url,
+          columns: [
+            {data: "account.name"},
+            {data: "account.category"},
+            {data: "account.phone"},
+            {data: "account.website"},
+            {data: "account.email"}]
+        });
+
+        $(this).submit(function(event) {
+          var url = $(this).attr('action') + ".json?" + $(this).serialize();
+          table.ajax.url(url).load();
+          event.preventDefault();
+        }); 
+      });
+  });
