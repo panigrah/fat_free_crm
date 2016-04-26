@@ -26,7 +26,10 @@
   $(document).ready(function() {
       $('#search .ransack_search').each( function() {
         var url = $(this).attr('action') + ".json?" + $(this).serialize();
-        var table = $('#search-results table.table').DataTable( {
+        var table = $('#search-results table.table').on('xhr.dt', function (e, settings, json, xhr) {
+          $('#advanced_search').css({ opacity: 1.0 });
+        })
+        .DataTable( {
           ajax: url,
           columns: [
             {data: "account.name"},
