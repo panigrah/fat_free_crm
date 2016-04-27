@@ -34,7 +34,7 @@ module CRM
 
       validation :default do
         required(:name) { filled? & unique? }   
-        optional(:rating).maybe(inclusion?: %w(0 1 2 3 4 5))
+        optional(:rating).maybe(inclusion?: [0,1,2,3,4,5])
         optional(:category).maybe(inclusion?: Setting.unroll(:account_category).map { |s| s.last.to_s })	
 
         configure do

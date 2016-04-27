@@ -20,8 +20,9 @@ GIT
       dry-logic (~> 0.2, >= 0.2.2)
       dry-types (~> 0.7, >= 0.7.1)
 
-PATH
-  remote: ../ransack_ui
+GIT
+  remote: git://github.com/panigrah/ransack_ui.git
+  revision: 5ccdb02229f82fab904ce9bcfa5706c989931c70
   specs:
     ransack_ui (1.3.4)
       haml
@@ -82,6 +83,8 @@ GEM
     acts_as_list (0.7.4)
       activerecord (>= 3.0)
     addressable (2.4.0)
+    airbrussh (1.0.1)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
     authlogic (3.4.6)
       activerecord (>= 3.2)
@@ -91,13 +94,16 @@ GEM
     builder (3.2.2)
     byebug (8.2.4)
     cancancan (1.13.1)
-    capistrano (3.4.1)
+    capistrano (3.5.0)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
       i18n
       rake (>= 10.0.0)
-      sshkit (~> 1.3)
+      sshkit (>= 1.9.0)
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-harrow (0.3.2)
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -247,7 +253,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.2)
+    multi_json (1.11.3)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
