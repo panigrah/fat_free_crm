@@ -14,6 +14,8 @@ Rails.application.routes.draw do
         post :filter
       end
     end
+    resource :contacts do
+    end
   end
 
   get 'activities' => 'home#index'
