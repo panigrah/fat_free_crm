@@ -37,7 +37,7 @@ module ApplicationHelper
   def subtitle(id, hidden = true, text = id.to_s.split("_").last.capitalize)
     content_tag("div",
                 link_to("<small>#{ hidden ? '&#9658;' : '&#9660;' }</small> #{sanitize text}".html_safe,
-                        url_for(controller: :home, action: :toggle, id: id),
+                        url_for(controller: '/home', action: :toggle, id: id),
                         remote: true,
                         onclick: "crm.flip_subtitle(this)"
                 ), class: "subtitle")
@@ -331,17 +331,19 @@ module ApplicationHelper
 
   # Render a text field that is part of compound address.
   #----------------------------------------------------------------------------
-  def address_field(form, object, attribute, extra_styles)
+  def address_field(form, object, attribute, extra_styles, classes = "")
     hint = "#{t(attribute)}..."
     if object.send(attribute).blank?
       form.text_field(attribute,
                       style:   "margin-top: 6px; #{extra_styles}",
-                      placeholder: hint
+                      placeholder: hint,
+                      class: classes
       )
     else
       form.text_field(attribute,
                       style:   "margin-top: 6px; #{extra_styles}",
-                      placeholder: hint
+                      placeholder: hint,
+                      class: classes
       )
     end
   end
@@ -440,7 +442,7 @@ module ApplicationHelper
     text = id.to_s.split("_").last.capitalize if text.nil?
     content_tag("div", class: "subtitle show_attributes") do
       content = link_to("<small>#{ hidden ? '&#9658;' : '&#9660;' }</small> #{sanitize text}".html_safe,
-                        url_for(controller: :home, action: :toggle, id: id),
+                        url_for(controller: '/home', action: :toggle, id: id),
                         remote:  true,
                         onclick: "crm.flip_subtitle(this)"
       )

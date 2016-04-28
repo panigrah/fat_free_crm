@@ -1,0 +1,40 @@
+- address_type = type.to_s.camelize
+- address_attr = "#{type}_address"
+- address = get_address(asset, address_attr)
+
+- same_as_billing ||= false
+
+= f.fields_for(address_attr.to_sym) do |a|
+  = a.hidden_field :address_type, :value => address_type
+  - unless Setting.compound_address
+    - if same_as_billing
+      %div
+        %span(style="float:right")
+          = link_to_function(t(:same_as_billing), "crm.copy_address('account_shipping_address', 'account_billing_address')")
+        .label #{t title}:
+    - else
+      .label #{t title}:
+    = a.text_area :full_address, :style =>"width:240px", :rows => 4
+  - else
+    .row.address
+      .col-md-12
+        - if same_as_billing
+          .pull-right
+            = link_to_function(t(:same_as_billing), "crm.copy_compound_address('account_billing_address', 'account_shipping_address')")
+        %label #{t title}:
+    .row
+      .col-md-12
+        = address_field(a, address, :street1, "", "form-control")
+    .row
+      .col-md-12
+        = address_field(a, address, :street2, "", "form-control")
+    .row.address
+      .col-md-8
+        = address_field(a, address, :city, "", "form-control")
+      .col-md-4
+        = address_field(a, address, :state, "", "form-control")
+    .row.address
+      .col-md-4
+        = address_field(a, address, :zipcode, "", "form-control")
+      .col-md-8
+        = a.country_select(:country, priority_countries, { :include_blank => "" }, {:"data-placeholder" => t(:select_a_country), :style => "", :class => 'select2 form-control'})

@@ -15,6 +15,8 @@ module CRM
 
       def new
         #form CRM::Account::Create
+        @contact = ::Contact.new
+        @account = ::Account.new(user: current_user)
       end
 
       def create

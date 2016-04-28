@@ -41,7 +41,7 @@ module AccountsHelper
     options = {}
     yield options if block_given?
 
-    content_tag(:div, class: 'label') do
+    content_tag(:div, class: 'text-light-blue') do
       t(:account).html_safe +
 
         content_tag(:span, id: 'account_create_title') do

@@ -45,6 +45,9 @@ class ContactsController < EntitiesController
     respond_with(@contact)
   end
 
+  def field_group
+  end
+
   # GET /contacts/1/edit                                                   AJAX
   #----------------------------------------------------------------------------
   def edit

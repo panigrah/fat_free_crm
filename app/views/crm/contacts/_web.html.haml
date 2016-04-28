@@ -1,5 +1,5 @@
 - edit ||= false
-- collapsed = session[:contact_presence].nil? # && @contact.errors.empty?
+- collapsed = false #session[:contact_presence].nil? # && @contact.errors.empty?
 = subtitle :contact_presence, collapsed, t(:web_presence)
 .section
   %small#contact_presence_intro{ hidden_if(!collapsed) }
@@ -8,23 +8,23 @@
     .row
       .col-md-6
         .form-group
-          .label.top #{t :blog}:
+          %label.top #{t :blog}:
           = f.text_field :blog, :class => 'form-control'
       .col-md-6
         .form-group
-          .label.top #{t :twitter}:
+          %label.top #{t :twitter}:
           = f.text_field :twitter, :class => 'form-control'
     .row
       .col-md-6
         .form-group
-          .label #{t :linked_in}:
+          %label #{t :linked_in}:
           = f.text_field :linkedin, :class => 'form-control'
       .col-md-6
         .form-group
-          .label #{t :facebook}:
+          %label #{t :facebook}:
           = f.text_field :facebook, :class => 'form-control'
     .row
       .col-md-6
         .form-group
-          .label #{t :skype}:
+          %label #{t :skype}:
           = f.text_field :skype, :class => 'form-control'
