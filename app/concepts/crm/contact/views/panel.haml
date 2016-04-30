@@ -1,0 +1,43 @@
+.box.box-primary
+  .box-body.box-profile
+    = avatar_photo
+    %h3.profile-username.text-center= full_name
+    .text-muted.text-center
+      = work_details
+    %p.text-muted.text-center
+      = phone
+    %p.text-muted.text-center
+      = email
+    -#= social_icons
+
+    %strong
+      %i.fa.fa-book.margin-r-5
+      #{t :background_info}
+    %p.text-muted
+      = background_info
+    %hr
+
+    %strong
+      %i.fa.fa-pencil.margin-r-5
+        #{t :tags}
+    %p
+      = tags
+
+/
+  %li
+    %dt= assigned_to ? truncate(assignee.full_name, :length => 16) : nil
+    %tt #{t :assigned_to}:
+  %li
+    %dt
+      - if lead
+        = link_to(truncate(lead.name, :length => 16), lead, :title => lead.name)
+      - else
+        #{t :n_a}
+    %tt #{t :lead}:
+  %li
+    %dt
+      - if lead.try(:campaign)
+        = link_to(truncate(lead.campaign.name, :length => 16), lead.campaign, :title => lead.campaign.name)
+      - else
+        #{t :n_a}
+    %tt #{t :campaign}:

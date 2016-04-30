@@ -1,2 +1,5 @@
-= concept('crm/account/cell', @model).(:panel)
--#= @model.inspect
+.col-md-3
+  .box.box-primary
+    = concept('crm/account/cell', @model).(:panel)
+.col-md-9
+  = @model.inspect

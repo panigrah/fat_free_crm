@@ -41,7 +41,7 @@ module CRM
       end
 
       def show
-        present CRM::Account::Update
+        present CRM::Contact::Update
       end
 
       #TODO: What does this do?
