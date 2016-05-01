@@ -1,0 +1,37 @@
+- truncated = truncate(email.body_without_textile.to_s.gsub("\n", " "), :length => 125 - email.subject.to_s.size)
+- formatted = email.body
+- mediator = email.mediator
+.post
+  .user-block
+    = link_to avatar_for(email.user, :size => :small, :class => "img-circle img-bordered-sm"), user_path(email.user)
+    %span.username
+      = link_to(email.user.full_name, user_path(email.user))
+      .pull-right.btn-box.btn-box-tool
+        - if can?(:destroy, mediator)
+          = link_to_delete(email)
+    %span.description
+      - if can?(:read, mediator)
+        - if email.sent_to.to_s.include?(", ")
+          = "To: "
+          = email.sent_to
+        - else
+          = "To "
+          = link_to_email(email.sent_to)
+        = "from "
+        = link_to_email(email.sent_from)
+        = ", sent on "
+        = l(email.sent_at, :format => :mmddhhss) << " | "
+      = t(:added_note, value: timeago(email.created_at) ).html_safe
+  .commentable
+    - if can?(:read, mediator)
+      %div{ hidden_if(email.expanded?), :id => dom_id(email, :truncated) }
+      %p
+        = h(email.subject)
+        %tt
+          = " - "
+          = truncated
+
+    .textile{ hidden_if(email.collapsed?), :id => dom_id(email, :formatted) }
+      .email_content
+        %p= h(email.subject)
+        = auto_link(formatted)

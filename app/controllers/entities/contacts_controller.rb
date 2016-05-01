@@ -5,7 +5,7 @@
 #------------------------------------------------------------------------------
 class ContactsController < EntitiesController
   before_action :get_accounts, only: [:new, :create, :edit, :update]
-
+  
   # GET /contacts
   #----------------------------------------------------------------------------
   def index

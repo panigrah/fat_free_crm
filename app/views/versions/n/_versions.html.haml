@@ -1,0 +1,11 @@
+%div#versions
+  - collapsed = false #session[:version_history].nil?
+  %br
+  = subtitle(:version_history, collapsed, t(:versions))
+  %div
+    %div{ hidden_if(collapsed) }
+      %ul.timeline.timeline-inverse
+        - versions = Version.history(object).paginate(:page => 1, :per_page => 20)
+        = render :partial => "versions/n/version", :collection => versions
+
+      = paginate( collection: versions, id: 'versions_pagination', params: { action: 'versions' } )

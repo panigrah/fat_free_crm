@@ -1,0 +1,21 @@
+%li
+  .timeline-item
+    %span.time
+      %i.fa.fa-clock-o
+      = timeago(version.created_at)
+    - item_type = version.item_type.underscore.humanize
+    - if user = User.find_by_id(version.whodunnit)
+      - user_name = user.name
+    - else
+      - user_name = t('version.anonymous')
+    .timeline-header
+      -# If translation doesn't exist, just print event message
+      - if t('version.' + version.event, :default => 0) != 0
+        = t('version.' + version.event, :item => item_type, :by => user_name, :default => version.event)
+      - else
+        = auto_link(version.event)
+    .timeline-body
+      - version.changeset.each do |attr_name, change|
+        - label, first, second = parse_version(attr_name, change)
+        = render :partial => 'versions/version_item', :locals => {:label => label, :first => first, :second => second}
+    .timeline-footer

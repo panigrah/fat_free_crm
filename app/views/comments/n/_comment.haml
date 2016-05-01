@@ -1,0 +1,39 @@
+- truncated = simple_format(truncate(comment.comment.gsub("\n", " "), :length => 125))
+- formatted = defined?(RedCloth) ? RedCloth.new(comment.comment).to_html : simple_format(comment.comment)
+- collapsable = formatted.size > 150
+- commentable = comment.commentable
+.post
+  .user-block
+    = link_to avatar_for(comment.user, :size => :small, :class => "img-circle img-bordered-sm"), user_path(comment.user)
+    %span.username
+      = link_to(comment.user.full_name, user_path(comment.user))
+      .pull-right.btn-box.btn-box-tool
+        - if can?(:update, commentable)
+          = link_to_edit(comment)
+        - if can?(:destroy, commentable)
+          = link_to_delete(comment)
+    %span.description
+      = t(:added_note, value: timeago(comment.created_at) ).html_safe
+  .commentable
+    - if can?(:read, commentable)
+      - if collapsable
+        %div{ hidden_if(comment.expanded?), :id => dom_id(comment, :truncated) }
+          = truncated
+        .textile{ hidden_if(comment.collapsed?), :id => dom_id(comment, :formatted) }
+          = sanitize auto_link(formatted)
+      - else
+        .textile= sanitize auto_link(formatted)
+  %ul.list-inline
+    %li
+      %a.link-black.text-sm
+        %i.fa.fa-share.margin-r-5
+        Share
+    %li
+      %a.link-black.text-sm
+        %i.fa.fa-thumbs-o-up.margin-r-5
+        Like
+    %li.pull-right
+      %a.link-black.text-sm
+        %i.fa.fa-comments-o.margin-r-5 
+        Comments (5)
+  %input.form-control.input.sm{:type => "text", :placeholder => "Type a comment"}

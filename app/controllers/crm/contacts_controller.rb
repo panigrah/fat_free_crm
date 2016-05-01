@@ -42,6 +42,7 @@ module CRM
 
       def show
         present CRM::Contact::Update
+        @timeline = (@model.comments + @model.emails).sort { |x, y| y.created_at <=> x.created_at }
       end
 
       #TODO: What does this do?
