@@ -1,0 +1,64 @@
+.col-md-12
+  .box.box-widget[opportunity]
+    - if opportunity.stage
+      .strip{:class => opportunity.stage}= t(opportunity.stage)
+    - else
+      .strip.white #{t :other}
+
+    .box-header.with-border
+      = link_to_if can?(:read, opportunity), opportunity.name, opportunity
+      - if (account = opportunity.account) && account.id
+        == #{t :from} #{link_to_if can?(:read, account), account.name, account_path(account)}
+      .subtitle
+        - user_name = opportunity.user.try(:full_name)
+        - if user_name
+          = t(:added_by, :time_ago => timeago(opportunity.created_at), :user => h(user_name)).html_safe
+        - else
+          = t(:added_ago, :value => timeago(opportunity.created_at)).html_safe
+      .box-tools
+        - if can?(:update, opportunity)
+          %a.btn.btn-box-tool
+            %i.fa.fa-pencil
+            -#TODO= link_to_edit(opportunity)
+
+        - if shown_on_landing_page?
+          %a.btn.btn-box-tool
+            %i.fa.fa-chain-broken
+            -#TODO= link_to_discard(opportunity)
+
+        - if can?(:destroy, opportunity)
+          %a.btn.btn-box-tool
+            %i.fa.fa-trash
+            -#TODO= link_to_delete(opportunity)
+    .box-body
+      %dt
+        %b= number_to_currency(opportunity.weighted_amount, :precision => 0) + " | "
+        - won_or_lost = %w(won lost).include?(opportunity.stage)
+        - unless won_or_lost
+          = number_to_currency(opportunity.amount || 0, :precision => 0)
+          - if opportunity.discount
+            = t(:discount_number, number_to_currency(opportunity.discount, :precision => 0))
+          - else
+            = t(:no_discount)
+          = t(:probability_number, (opportunity.probability || 0).to_s + '%') + " | "
+
+        - if opportunity.closes_on
+          - if won_or_lost
+            - if opportunity.closes_on >= Date.today
+              = t(:closing_date, l(opportunity.closes_on, :format => :mmddyy))
+            - else
+              = t(:closed_ago_on, :time_ago => distance_of_time_in_words(opportunity.closes_on, Date.today), :date => l(opportunity.closes_on, :format => :mmddyy))
+          - elsif opportunity.closes_on > Date.today
+            = t(:expected_to_close,  :time => distance_of_time_in_words(Date.today, opportunity.closes_on), :date => l(opportunity.closes_on, :format => :mmddyy))
+          - elsif opportunity.closes_on == Date.today
+            %span.warn= t(:closes_today)
+          - else
+            %span.warn= t(:past_due, distance_of_time_in_words(opportunity.closes_on, Date.today))
+        - else
+          = t(:no_closing_date)
+
+    - if opportunity.tag_list.present?
+      .box-footer
+        .tags= tags_for_index(opportunity)
+
+    = hook(:opportunity_bottom, self, :opportunity => opportunity)

@@ -8,11 +8,11 @@
           %li.active
             %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#activity"} Activity
           %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#details"} Details
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#related"} Related
+          %li
             %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#timeline"} Timeline
-          %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tasks"} Tasks
-          %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#opportunities"} Opportunities
         .tab-content
           #activity.tab-pane.active
             = render "comments/n/new", :commentable => @model
@@ -27,10 +27,11 @@
             %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
             %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
             %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-          #tasks.tab-pane
+          #related.tab-pane
+            = render :partial => "opportunities/n/opportunities", :locals => {:object => @model}
             = render :partial => "shared/n/tasks", :locals => {:object => @model}
-          #opportunities.tab-pane
-            -#= render :partial => "opportunities/n/opportunities", :locals => {:object => @model}
+          #detail.tab-pane
+            
 
       / /.tab-pane
     / /.tab-content

@@ -1,0 +1,28 @@
+- opportunities = object.opportunities.order('updated_at desc').paginate(:page => 1, :per_page => 20)
+
+.row
+  .col-xs-12
+    .box
+      .box-header
+        %h3.box-title Opportunities
+        .box-tools
+          %a.btn.btn-default New
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tbody
+            %tr
+              %th ID
+              %th Name
+              %th Owner
+              %th Age
+              %th Close Date
+              %th Probability
+              %th Amount
+              %th Status
+              %th 
+            = render :partial => "opportunities/n/opportunity", :collection => opportunities
+
+-#.row#opportunities
+-#  = render :partial => "opportunities/n/opportunity", :collection => opportunities
+
+-#= paginate( collection: opportunities, id: 'opportunities_pagination', params: { action: 'opportunities' } )

@@ -1,0 +1,25 @@
+%tr
+  %td= opportunity.id
+  %td= link_to_if can?(:read, opportunity), opportunity.name, opportunity
+  %td= opportunity.user.try(:full_name)
+  %td
+  %td= opportunity.closes_on
+  %td= (opportunity.probability || 0).to_s + '%'
+  %td= number_to_currency(opportunity.amount || 0, :precision => 0)
+  %td= opportunity.stage
+  %td
+    .box-tools
+      - if can?(:update, opportunity)
+        %a.btn.btn-box-tool
+          %i.fa.fa-pencil
+          -#TODO= link_to_edit(opportunity)
+
+      - if shown_on_landing_page?
+        %a.btn.btn-box-tool
+          %i.fa.fa-chain-broken
+          -#TODO= link_to_discard(opportunity)
+
+      - if can?(:destroy, opportunity)
+        %a.btn.btn-box-tool
+          %i.fa.fa-trash
+          -#TODO= link_to_delete(opportunity)
