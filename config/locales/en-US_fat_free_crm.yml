@@ -737,9 +737,9 @@ en-US:
   #----------------------------------------------------------------------------
   versions: History
   version:
-    create: ! '%{item} created by %{by}'
-    update: ! '%{item} modified by %{by}'
-    destroy: ! '%{item} destroyed by %{by}'
+    create: ! '%{by} created %{item}'
+    update: ! '%{by} modified %{item}'
+    destroy: ! '%{by} destroyed %{item}'
     set_html: ! '%{attr} set to %{to}'
     unset_html: ! '%{attr} unset'
     change_html: ! '%{attr} changed from %{from} to %{to}'

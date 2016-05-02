@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :contacts do
       collection do
         get :field_group
+        post :discard
       end
     end
   end

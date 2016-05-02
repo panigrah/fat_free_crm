@@ -10,7 +10,9 @@
           %li
             %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#timeline"} Timeline
           %li
-            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#settings"} Settings
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tasks"} Tasks
+          %li
+            %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#opportunities"} Opportunities
         .tab-content
           #activity.tab-pane.active
             = render "comments/n/new", :commentable => @model
@@ -19,114 +21,16 @@
           #timeline.tab-pane
             / The timeline
             = render :partial => "versions/n/versions", :locals => {:object => @model}
-            %ul.timeline.timeline-inverse
-              / timeline time label
-              %li.time-label
-                %span.bg-red
-                  10 Feb. 2014
-              / /.timeline-label
-              / timeline item
-              %li
-                %i.fa.fa-envelope.bg-blue
-                .timeline-item
-                  %span.time
-                    %i.fa.fa-clock-o
-                    12:05
-                  %h3.timeline-header
-                    %a{:href => "#"} Support Team
-                    sent you an email
-                  .timeline-body
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                    quora plaxo ideeli hulu weebly balihoo...
-                  .timeline-footer
-                    %a.btn.btn-primary.btn-xs Read more
-                    %a.btn.btn-danger.btn-xs Delete
-              / END timeline item
-              / timeline item
-              %li
-                %i.fa.fa-user.bg-aqua
-                .timeline-item
-                  %span.time
-                    %i.fa.fa-clock-o
-                    5 mins ago
-                  %h3.timeline-header.no-border
-                    %a{:href => "#"} Sarah Young
-                    accepted your friend request
-              / END timeline item
-              / timeline item
-              %li
-                %i.fa.fa-comments.bg-yellow
-                .timeline-item
-                  %span.time
-                    %i.fa.fa-clock-o
-                    27 mins ago
-                  %h3.timeline-header
-                    %a{:href => "#"} Jay White
-                    commented on your post
-                  .timeline-body
-                    Take me to your leader!
-                    Switzerland is small and neutral!
-                    We are more like Germany, ambitious and misunderstood!
-              .timeline-footer
-                %a.btn.btn-warning.btn-flat.btn-xs View comment
-          / END timeline item
-          / timeline time label
-          %li.time-label
-            %span.bg-green
-              3 Jan. 2014
-          / /.timeline-label
-          / timeline item
-          %li
-            %i.fa.fa-camera.bg-purple
-            .timeline-item
-              %span.time
-                %i.fa.fa-clock-o
-                2 days ago
-              %h3.timeline-header
-                %a{:href => "#"} Mina Lee
-                uploaded new photos
-              .timeline-body
-                %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-                %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-                %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-                %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-          / END timeline item
-          %li
-            %i.fa.fa-clock-o.bg-gray
-      / /.tab-pane
-      #settings.tab-pane
-        %form.form-horizontal
-          .form-group
-            %label.col-sm-2.control-label{:for => "inputName"} Name
-            .col-sm-10
-              %input#inputName.form-control{:placeholder => "Name", :type => "email"}/
-          .form-group
-            %label.col-sm-2.control-label{:for => "inputEmail"} Email
-            .col-sm-10
-              %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}/
-          .form-group
-            %label.col-sm-2.control-label{:for => "inputName"} Name
-            .col-sm-10
-              %input#inputName.form-control{:placeholder => "Name", :type => "text"}/
-          .form-group
-            %label.col-sm-2.control-label{:for => "inputExperience"} Experience
-            .col-sm-10
-              %textarea#inputExperience.form-control{:placeholder => "Experience"}
-          .form-group
-            %label.col-sm-2.control-label{:for => "inputSkills"} Skills
-            .col-sm-10
-              %input#inputSkills.form-control{:placeholder => "Skills", :type => "text"}/
-          .form-group
-            .col-sm-offset-2.col-sm-10
-              .checkbox
-                %label
-                  %input{:type => "checkbox"}/
-                  I agree to the
-                  %a{:href => "#"} terms and conditions
-          .form-group
-            .col-sm-offset-2.col-sm-10
-              %button.btn.btn-danger{:type => "submit"} Submit
+          / /.tab-pane
+          #files.tab-pane
+            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
+            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
+            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
+            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
+          #tasks.tab-pane
+            = render :partial => "shared/n/tasks", :locals => {:object => @model}
+          #opportunities.tab-pane
+            -#= render :partial => "opportunities/n/opportunities", :locals => {:object => @model}
+
       / /.tab-pane
     / /.tab-content

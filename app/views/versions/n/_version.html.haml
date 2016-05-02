@@ -1,4 +1,6 @@
 %li
+  - cl = {"create" => 'fa-file', "update" => 'fa-edit', "destroy" => "fa-trash", "set" => 'fa-check', "unset" => 'fa-close', "change" => 'fa-save'}
+  %i.fa{:class => "#{cl[version.event]} bg-blue"}
   .timeline-item
     %span.time
       %i.fa.fa-clock-o
@@ -11,7 +13,9 @@
     .timeline-header
       -# If translation doesn't exist, just print event message
       - if t('version.' + version.event, :default => 0) != 0
-        = t('version.' + version.event, :item => item_type, :by => user_name, :default => version.event)
+        %a{:href => url_for(user)}
+          = user.name
+        = t('version.' + version.event, :item => item_type, :by => '', :default => version.event)
       - else
         = auto_link(version.event)
     .timeline-body
