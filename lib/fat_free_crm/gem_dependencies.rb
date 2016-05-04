@@ -34,6 +34,8 @@ require 'thor'
 require 'rails_autolink'
 require 'trailblazer'
 require 'reform'
+require 'cells'
+require 'cells/rails'
 
 # Load redcloth if available (for textile markup in emails)
 begin

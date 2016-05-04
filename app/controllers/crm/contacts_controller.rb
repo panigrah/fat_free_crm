@@ -7,7 +7,7 @@ module CRM
       # GET /contacts
       #----------------------------------------------------------------------------
       def index
-        ::Contact.all
+        collection CRM::Contact::Index
         #@q = ::Account.ransack(params[:q])
         #collection CRM::Account::Search
         #respond_with({:data => @collection})

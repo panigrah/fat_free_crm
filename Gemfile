@@ -34,7 +34,7 @@ remove 'fat_free_crm'
 group :development do
   # don't load these gems in travis
   unless ENV["CI"]
-    gem 'thin'
+    #gem 'thin'
     gem 'quiet_assets'
     gem 'capistrano', '~> 3.4.0'
     gem 'capistrano-bundler'
@@ -58,6 +58,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails' unless ENV["CI"]
   gem 'factory_girl_rails'
+  gem 'puma'
 end
 
 group :test do
@@ -70,7 +71,7 @@ group :test do
 end
 
 group :heroku do
-  gem 'unicorn', platform: :ruby
+  gem 'puma', platform: :ruby
   gem 'rails_12factor'
 end
 
@@ -85,7 +86,9 @@ gem 'reform-rails'
 gem "dry-validation", github: 'dry-rb/dry-validation'
 gem "trailblazer"
 gem "trailblazer-rails"
-gem "cells"
+gem "cells", github: 'apotonick/cells'
+gem "cells-rails", github: 'trailblazer/cells-rails'
+gem 'trailblazer-cells'
 gem "kaminari-cells"
 gem 'cells-haml'
 gem 'simple_form'

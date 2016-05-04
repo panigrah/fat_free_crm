@@ -25,11 +25,11 @@
   .commentable
     - if can?(:read, mediator)
       %div{ hidden_if(email.expanded?), :id => dom_id(email, :truncated) }
-      %p
-        = h(email.subject)
-        %tt
-          = " - "
-          = truncated
+        %p
+          = h(email.subject)
+          %tt
+            = " - "
+            = truncated
 
     .textile{ hidden_if(email.collapsed?), :id => dom_id(email, :formatted) }
       .email_content

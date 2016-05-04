@@ -1,7 +1,8 @@
 %section.content
   .row
     .col-md-3
-      =  concept('crm/contact/cell', @model).(:panel)
+      -#=  concept('crm/contact/cell', @model).(:panel)
+      = cell(CRM::Contact::Panel, @model)
     .col-md-9
       .nav-tabs-custom
         %ul.nav.nav-tabs
