@@ -1,0 +1,50 @@
+.row
+  .col-sm-2
+    = avatar_for(@model, :size => "30x30")
+
+  .col-sm-8
+    = link_to_if true,  full_name, @model
+    %tt
+      = summary
+
+      - if lead and lead.referred_by?
+        &ndash;
+        == #{t :referred_by_small} #{lead.referred_by}
+
+    %dt{ :style => "padding: 2px 0px 0px 0px" }
+      - if email.present?
+        = link_to_email(email)
+        |
+      - if phone.present?
+        == #{t :phone_small}:
+        %b= phone
+        |
+      - if mobile.present?
+        == #{t :mobile_small}:
+        %b= mobile
+        |
+      = t(:added_ago, value: timeago(created_at)).html_safe
+
+    - if tag_list.present?
+      %dt
+        .tags= tags_for_index(@model)
+
+  .col-sm-2
+    %ul.box-tools.pull-right
+      -#= hook(:contact_tools_before, self, :contact => contact)
+
+      -#- if can?(:update, contact)
+        %li= link_to_edit(contact)
+      %a
+        %i.fa.fa-pencil
+
+      -#- if shown_on_landing_page?
+        %li= link_to_discard(contact)
+      %a
+        %i.fa.fa-unlink
+
+      -#- if can?(:destroy, contact)
+        %li= link_to_delete(contact)
+      %a
+        %i.fa.fa-trash
+    -#= hook(:contact_bottom, self, :contact => contact)

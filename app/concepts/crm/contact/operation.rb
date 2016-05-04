@@ -19,7 +19,7 @@ module CRM
     class Index < Trailblazer::Operation
       include Collection
 
-    def model!(params)
+      def model!(params)
         ::Contact.all
      end
     end

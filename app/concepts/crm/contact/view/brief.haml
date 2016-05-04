@@ -1,0 +1,28 @@
+.row
+  .col-sm-2
+    = avatar_for(contact, :size => "16x16")
+
+  .col-sm-8
+    -#= link_to_if can?(:read, contact), contact.full_name(@current_user.preference[:contacts_naming]), contact
+    = link_to_if true, full_name, contact
+    = summary
+
+    - if (lead = contact.lead) and lead.referred_by?
+      &ndash;
+      == #{t :referred_by_small} #{lead.referred_by}
+
+  .col-sm-2
+    .box-tools.pull-right
+      -#= hook(:contact_tools_before, self, :contact => contact)
+
+      -#- if can?(:update, contact)
+        = link_to_edit(contact)
+
+      -#- if shown_on_landing_page?
+        = link_to_discard(contact)
+
+      -#- if can?(:destroy, contact)
+        = link_to_delete(contact)
+
+
+-#= hook(:contact_bottom, self, :contact => contact)
