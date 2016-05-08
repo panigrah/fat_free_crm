@@ -1,0 +1,57 @@
+-# Setting.bucket_task.each do |bucket|
+-#  - if bucket == @task.bucket
+
+= concept("task/index_cell", @tasks)
+
+
+/ /.row
+.row
+  .col-xs-12
+    .box
+      .box-header
+        %h3.box-title Responsive Hover Table
+        .box-tools
+          .input-group.input-group-sm{:style => "width: 150px;"}
+            %input.form-control.pull-right{:name => "table_search", :placeholder => "Search", :type => "text"}
+              .input-group-btn
+                %button.btn.btn-default{:type => "submit"}
+                  %i.fa.fa-search
+      / /.box-header
+      .box-body.table-responsive.no-padding
+        %table.table.table-hover
+          %tr
+            %th ID
+            %th User
+            %th Date
+            %th Status
+            %th Reason
+          %tr
+            %td 183
+            %td John Doe
+            %td 11-7-2014
+            %td
+              %span.label.label-success Approved
+            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
+          %tr
+            %td 219
+            %td Alexander Pierce
+            %td 11-7-2014
+            %td
+              %span.label.label-warning Pending
+            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
+          %tr
+            %td 657
+            %td Bob Doe
+            %td 11-7-2014
+            %td
+              %span.label.label-primary Approved
+            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
+          %tr
+            %td 175
+            %td Mike Doe
+            %td 11-7-2014
+            %td
+              %span.label.label-danger Denied
+            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
+      / /.box-body
+    / /.box

@@ -10,7 +10,16 @@ Rails.application.routes.draw do
 
   namespace :crm do
     resources :accounts
+    resource :tasks
   end
+
+resources :appointments do
+  collection do
+    get :confirm
+    get :cancel
+    get :history
+  end
+end
 
   get 'activities' => 'home#index'
   get 'admin'      => 'admin/users#index',       :as => :admin
