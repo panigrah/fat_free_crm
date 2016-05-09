@@ -21,7 +21,14 @@ Rails.application.routes.draw do
       end
     end
     resources :accounts
-    resource :tasks
+
+    resources :tasks do
+      member do
+        get :confirm
+      end
+    end
+
+
   end
 
 resources :appointments do

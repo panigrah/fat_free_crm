@@ -1,57 +1,30 @@
--# Setting.bucket_task.each do |bucket|
--#  - if bucket == @task.bucket
-
--#= concept("task/index_cell", @tasks)
-
-
-/ /.row
+- labels = %w(default primary success info warning danger)
 .row
   .col-xs-12
-    .box
-      .box-header
-        %h3.box-title Responsive Hover Table
-        .box-tools
-          .input-group.input-group-sm{:style => "width: 150px;"}
-            %input.form-control.pull-right{:name => "table_search", :placeholder => "Search", :type => "text"}
-              .input-group-btn
-                %button.btn.btn-default{:type => "submit"}
-                  %i.fa.fa-search
-      / /.box-header
-      .box-body.table-responsive.no-padding
-        %table.table.table-hover
-          %tr
-            %th ID
-            %th User
-            %th Date
-            %th Status
-            %th Reason
-          %tr
-            %td 183
-            %td John Doe
-            %td 11-7-2014
-            %td
-              %span.label.label-success Approved
-            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
-          %tr
-            %td 219
-            %td Alexander Pierce
-            %td 11-7-2014
-            %td
-              %span.label.label-warning Pending
-            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
-          %tr
-            %td 657
-            %td Bob Doe
-            %td 11-7-2014
-            %td
-              %span.label.label-primary Approved
-            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
-          %tr
-            %td 175
-            %td Mike Doe
-            %td 11-7-2014
-            %td
-              %span.label.label-danger Denied
-            %td Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
-      / /.box-body
-    / /.box
+    - Task.grouped.each do |bucket, tasks|
+      .box
+        .box-header
+          %h3.box-title= bucket.humanize
+        .box-body.table-responsive.no-padding
+          %table.table.table-hover.table-condensed
+            %th{width: 15}
+            %th
+            %th
+            %th{width: 10}
+            %th{width: 10}
+            - tasks.each do |a|
+              %tr
+                %td.label.label-default{:class => labels[rand(0..5)]}= a.category.humanize
+                %td
+                  = link_to confirm_crm_task_path(a) do
+                    %span.glyphicon.glyphicon-ok
+                %td
+                  = a.name
+                  &#45;
+                  %em{style: 'color:red;'}= a.computed_bucket.humanize
+                %td
+                  = button_to edit_crm_task_path(a), method: :get, class: "btn btn-default" do
+                    %span.glyphicon.glyphicon-pencil
+                %td
+                  = button_to crm_task_path(a), confirm: 'Are you sure?', method: :delete, class: "btn btn-default" do
+                    %span.glyphicon.glyphicon-remove

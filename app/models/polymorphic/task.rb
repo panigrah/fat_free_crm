@@ -36,6 +36,11 @@ class Task < ActiveRecord::Base
 
   serialize :subscribed_users, Array
 
+
+  scope :grouped, -> {
+    order('created_at DESC').group_by &:bucket
+  }
+
   # Tasks created by the user for herself, or assigned to her by others. That's
   # what gets shown on Tasks/Pending and Tasks/Completed pages.
   scope :my, ->(*args) {

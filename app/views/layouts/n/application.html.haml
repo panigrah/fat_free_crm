@@ -81,6 +81,11 @@
         / /.sidebar
       / Content Wrapper. Contains page content
       .content-wrapper
+
+        - flash.each do |key, value|
+          %div{class: "alert.alert-#{key}", role: "alert"}
+            = value
+
         / Content Header (Page header)
         %section.content-header
           %h1
@@ -94,6 +99,7 @@
             %li.active Here
         / Main content
         %section.content
+
           = yield
           / Your Page Content Here
         / /.content
