@@ -6,13 +6,13 @@
     -#TODO: Title should be customizable - Settings.title
     %title Fat Free CRM
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
-    = stylesheet_link_tag :application_n
+    = stylesheet_link_tag 'application_n'
     = stylesheet_link_tag :print, :media => 'print'
     = hook(:stylesheet_includes, self) do
       #{yield :stylesheet_includes}
     %style= yield :styles
 
-    = javascript_include_tag :application_n
+    = javascript_include_tag 'application_n'
     = csrf_meta_tag
     = hook(:javascript_includes, self)
 

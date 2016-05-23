@@ -48,6 +48,7 @@ group :development do
     gem 'rb-inotify', require: false
     gem 'rb-fsevent', require: false
     gem 'rb-fchange', require: false
+    #gem 'opal_hot_reloader', github: "fkchang/opal-hot-reloader"
   end
 end
 
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'pry-rails' unless ENV["CI"]
   gem 'factory_girl_rails'
   gem 'puma'
+  gem 'reactive_rails_generator'
 end
 
 group :test do
@@ -99,3 +101,11 @@ gem 'multi_json'
 gem 'roar'
 gem 'roar-rails'
 gem 'responders'
+
+gem 'reactive-ruby'
+gem 'react-rails', '~> 1.3.0'
+gem 'opal-rails', '>= 0.8.1'
+gem 'therubyracer', platforms: :ruby
+gem 'react-router-rails', '~>0.13.3'
+gem 'reactive-router'
+gem 'reactive-record'

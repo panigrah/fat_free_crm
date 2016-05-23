@@ -4,6 +4,7 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+  mount ReactiveRecord::Engine => "/rr"
   resources :lists
 
   root to: 'home#index'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
         post :discard
       end
     end
+    resources :campaigns
   end
 
   get 'activities' => 'home#index'

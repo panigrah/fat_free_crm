@@ -1,7 +1,6 @@
 %section.content
   .row
     .col-md-3
-      -#=  concept('crm/contact/cell', @model).(:panel)
       = cell(CRM::Contact::Panel, @model)
     .col-md-9
       .nav-tabs-custom
@@ -24,15 +23,10 @@
             = render :partial => "versions/n/versions", :locals => {:object => @model}
           / /.tab-pane
           #files.tab-pane
-            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
-            %img.margin{:alt => "...", :src => "http://placehold.it/150x100"}/
           #related.tab-pane
             = render :partial => "opportunities/n/opportunities", :locals => {:object => @model}
             = render :partial => "shared/n/tasks", :locals => {:object => @model}
           #detail.tab-pane
             
-
       / /.tab-pane
     / /.tab-content

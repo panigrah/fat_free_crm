@@ -4,6 +4,8 @@
 // See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //------------------------------------------------------------------------------
 
+//= require components
+//= require react_ujs
 //= require jquery
 //= require jquery-migrate
 //= require jquery_ujs
@@ -39,3 +41,5 @@ Gem.loaded_specs.keys.grep(/^ffcrm_/).each do |plugin|
   require_asset(plugin) rescue Sprockets::FileNotFound
 end
 %>
+
+Opal.load('components');

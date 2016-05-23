@@ -4,6 +4,8 @@
 // See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 //------------------------------------------------------------------------------
 
+//= require components
+//= require react_ujs
 //= require jquery
 //= require n/bootstrap.min
 //= require n/lte_app
@@ -14,3 +16,6 @@
 $(document).ready(function() {
     $("#advanced_search").ransack_search_form();
 });
+
+Opal.load('components');
+//OpalHotReloader.listen
