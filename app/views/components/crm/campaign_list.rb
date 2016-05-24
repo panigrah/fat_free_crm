@@ -1,6 +1,6 @@
 module Components
   module CRM
-    class Campaigns < React::Component::Base
+    class CampaignList < React::Component::Base
 
       param :collection
 
@@ -35,7 +35,9 @@ module Components
 
       def render
         div do
-          "#{params.collection}ABC"
+          params.collection.each do |campaign|
+            Campaign :model => campaign
+          end
         end
       end
     end
